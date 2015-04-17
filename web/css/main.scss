@@ -1,0 +1,119 @@
+$lookatthis-main: #ffc511;
+$lookatthis-light: rgba(255, 197, 17, 0.45);
+$grey: #d5d5d5;
+$green-btn: #00d400;
+$green-light-btn: rgba(0, 212, 0, 0.45);
+$blue: #1bb4ff;
+$blue-light: rgba(27, 180, 255, 0.45);
+$buy: #ff744e;
+$buy-light: rgba(255, 116, 78, 0.46);
+$grey-text: #5A5A5A;
+$black-transparent: rgba(55, 55, 55, 0.51);
+
+$fast: 0.5s;
+$medium: 1.2s;
+$slow: 1.7s;
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,700&subset=cyrillic-ext,latin);
+
+body{
+  height: 100%;
+  width: 100%;
+  font-size: 1.5em;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+
+  .left-panel{
+    min-height: 150px;
+    padding: 0px;
+    -webkit-perspective: 500px;
+    perspective: 500px;
+
+    .button-list{
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+      transition-duration: $fast;
+      transition-timing-function: ease;
+      font-weight: 700;
+
+      &.write-article{
+        border: 1px solid $green-light-btn;
+      }
+      &.earn-money{
+        border: 1px solid $lookatthis-light;
+      }
+      &.buy-article{
+        border: 1px solid $buy-light;
+      }
+      &.join{
+        border: 1px solid $blue-light;
+      }
+
+      &:hover{
+        -webkit-transform: rotateX(20deg);
+        transform: rotateX(20deg);
+        &.write-article{
+          background: $green-light-btn;
+          box-shadow: 0px 5px 11px 1px $green-btn;
+        }
+        &.earn-money{
+          background: $lookatthis-light;
+          box-shadow: 0px 5px 11px 1px $lookatthis-main;
+        }
+        &.buy-article{
+          background: $buy-light;
+          box-shadow: 0px 5px 11px 1px $buy;
+        }
+        &.join{
+          background: $blue-light;
+          box-shadow: 0px 5px 11px 1px $blue;
+        }
+      }
+
+      .icon{
+        display: inline-block;
+        height: 48px;
+        width: 50px;
+        background-image: url('/images/left-panel-icons.png');
+        background-repeat: no-repeat;
+
+        &.article{
+          background-position: center -2px;
+          background-color: $green-btn;
+        }
+        &.earn{
+          background-position: center -233px;
+          background-color: $lookatthis-main;
+        }
+        &.buy-article{
+          background-position: center -499px;
+          background-color: $buy;
+        }
+        &.join{
+          background-position: center -405px;
+          background-color: $blue;
+        }
+      }
+
+      .title{
+        display: inline-block;
+        height: 50px;
+        position: relative;
+        color: $grey-text;
+      }
+    }
+  }
+
+  .right-panel{
+    border: 1px solid $grey;
+    min-height: 150px;
+  }
+
+  .center-panel{
+    //border: 1px solid $grey;
+  }
+
+}

@@ -1,0 +1,49 @@
+@import "main";
+.articles-list{
+  .article{
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid $grey;
+    transition-duration: $fast;
+    transition-timing-function: ease;
+    text-align: center;
+
+    .article-img{
+      margin: 0 auto;
+    }
+
+    .author{
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 20px;
+      width: 94%;
+      margin-left: 3%;
+      background: $black-transparent;
+
+      .author-link {
+        .avatar {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          top: -10px;
+          position: relative;
+        }
+        .author-name {
+          display: inline-block;
+          color: $lookatthis-main;
+          position: relative;
+          top: -9px;
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    &:hover{
+      img{
+
+      }
+    }
+  }
+}

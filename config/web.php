@@ -38,6 +38,16 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'assetManager' => [
+            'converter' => [
+                'class' => 'yii\web\AssetConverter',
+                'commands' => [
+                    'less' => ['css', 'lessc {from} {to} --no-color --sourcemap'],
+                    'scss' => ['css', 'sass {from} {to}'],
+                    'sass' => ['css', 'sass {from} {to} --sourcemap']
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];

@@ -26,11 +26,36 @@ AppAsset::register($this);
     <div class="wrap">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 left-panel"></div>
-                <div class="col-lg-7 center-panel">
+                <div class="col-lg-3 col-md-3 left-panel">
+                    <a class="button-list write-article" href="#">
+                        <div class="pull-left icon article"></div>
+                        <div class="col-md-9 col-lg-9 title">
+                            Write my article
+                        </div>
+                    </a>
+                    <a class="button-list earn-money" href="#">
+                        <div class="pull-left icon earn"></div>
+                        <div class="col-md-9 col-lg-9 title">
+                            Зарабатывайте
+                        </div>
+                    </a>
+                    <a class="button-list buy-article" href="#">
+                        <div class="pull-left icon buy-article"></div>
+                        <div class="col-md-9 col-lg-9 title">
+                            Buy article
+                        </div>
+                    </a>
+                    <a class="button-list join" href="#">
+                        <div class="pull-left icon join"></div>
+                        <div class="col-md-9 col-lg-9 title">
+                            Join
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-7 col-md-7 center-panel">
                     <?= $content ?>
                 </div>
-                <div class="col-lg-2 right-panel"></div>
+                <div class="col-lg-2 col-md-2 right-panel"></div>
             </div>
         </div>
     </div>
