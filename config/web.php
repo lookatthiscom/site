@@ -4,8 +4,10 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'Lookatthis',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'en',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -48,7 +50,41 @@ $config = [
                 ],
             ],
         ],
+        //translations
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    //'sourceLanguage' => 'en-US',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
+        //routes
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => false,
+            'rules' => [
+                'GET,POST create-article/<public_id:(\d+\w+)>' => 'article/create',
+                'GET preview/<public_id:(\d+\w+)>' => 'article/preview',
+                'article/new' => 'article/new',
+                'GET article/<public_title:(.+)>' => 'article/show',
+            ],
+        ],
+        //mailing
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+        ],
     ],
+    'on beforeAction' => function ($event) {
+        $afterRequest = new \app\components\AfterRequest();
+        $afterRequest->setUserLocale();
+    },
     'params' => $params,
 ];
 

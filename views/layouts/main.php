@@ -1,9 +1,12 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\Helper;
+use app\components\widgets;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -26,46 +29,24 @@ AppAsset::register($this);
     <div class="wrap">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3 left-panel">
-                    <a class="button-list write-article" href="#">
-                        <div class="pull-left icon article"></div>
-                        <div class="col-md-9 col-lg-9 title">
-                            Write my article
-                        </div>
-                    </a>
-                    <a class="button-list earn-money" href="#">
-                        <div class="pull-left icon earn"></div>
-                        <div class="col-md-9 col-lg-9 title">
-                            Зарабатывайте
-                        </div>
-                    </a>
-                    <a class="button-list buy-article" href="#">
-                        <div class="pull-left icon buy-article"></div>
-                        <div class="col-md-9 col-lg-9 title">
-                            Buy article
-                        </div>
-                    </a>
-                    <a class="button-list join" href="#">
-                        <div class="pull-left icon join"></div>
-                        <div class="col-md-9 col-lg-9 title">
-                            Join
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-7 col-md-7 center-panel">
-                    <?= $content ?>
-                </div>
-                <div class="col-lg-2 col-md-2 right-panel"></div>
+                <?= widgets\LeftPanelWidget::widget();?>
+                <?php if(in_array(Yii::$app->controller->id, ['article']) && in_array(Yii::$app->controller->action->id, ['create', 'preview']) ):?>
+                    <div class="col-lg-11 col-md-11 center-panel big">
+                        <?= $content ?>
+                    </div>
+                <?php else:?>
+                    <div class="col-lg-7 col-md-7 center-panel">
+                        <?= $content ?>
+                    </div>
+                <?php endif;?>
+                <?= widgets\RightPanelWidget::widget();?>
+                <img src="http://api.hostip.info/flag.php"  class="flag" data-toggle="tooltip" data-placement="bottom" title="<?=Yii::t('app','UKRAINE');?>">
             </div>
+            <div class="row copy">&copy; Lookatthis <?= date('Y') ?></div>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
+    <?= widgets\FooterWidget::widget();?>
 
 <?php $this->endBody() ?>
 </body>

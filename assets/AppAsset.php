@@ -20,9 +20,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/main.scss',
-        'css/articles-list.scss'
+        'css/articles-list.scss',
+        'css/modal.scss',
+        'css/jquery.arcticmodal-0.3.css',
+        'css/dark.css'
     ];
     public $js = [
+        'js/main.js',
+        'js/jquery.arcticmodal-0.3.min.js'
     ];
     public $images = [
     ];

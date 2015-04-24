@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\RegistrationForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -64,12 +66,91 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
+        if(Yii::$app->request->isAjax){
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->goBack();
+            } else {
+                $response = [
+                    'status' => 'error',
+                    'errors' => $model->getErrors()
+                ];
+                echo json_encode($response);
+                Yii::$app->end();
+            }
+        }else {
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->goBack();
+            } else {
+                return $this->render('login', [
+                    'model' => $model,
+                ]);
+            }
+        }
+    }
+
+    public function actionRegistration(){
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RegistrationForm();
+
+        if(Yii::$app->request->isAjax){
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $user = new User();
+                $user->username = $model->username;
+                $user->email = $model->email;
+                $user->setPassword($model->password);
+
+                if ($user->save()) {
+                    /*Yii::$app->mailer->compose('confirmEmail', ['user' => $user])
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+                        ->setTo($model->email)
+                        ->setSubject('Email confirmation for ' . Yii::$app->name)
+                        ->send();*/
+                    Yii::$app->user->login($user, $model->rememberMe ? 3600 * 24 * 30 : 0);
+                    return $this->goHome();
+                } else {
+                    $response = [
+                        'status' => 'error',
+                        'errors' => $model->getErrors()
+                    ];
+                    echo json_encode($response);
+                    Yii::$app->end();
+                }
+            } else {
+                $response = [
+                    'status' => 'error',
+                    'errors' => $model->getErrors()
+                ];
+                echo json_encode($response);
+                Yii::$app->end();
+            }
+        }else {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $user = new User();
+                $user->username = $model->username;
+                $user->email = $model->email;
+                $user->setPassword($model->password);
+
+                if ($user->save()) {
+                    /*Yii::$app->mailer->compose('confirmEmail', ['user' => $user])
+                        ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name])
+                        ->setTo($model->email)
+                        ->setSubject('Email confirmation for ' . Yii::$app->name)
+                        ->send();*/
+                    Yii::$app->user->login($user, $model->rememberMe ? 3600 * 24 * 30 : 0);
+                    return $this->goHome();
+                } else {
+                    return $this->render('registration', [
+                        'model' => $model,
+                    ]);
+                }
+            } else {
+                return $this->render('registration', [
+                    'model' => $model,
+                ]);
+            }
         }
     }
 

@@ -47,3 +47,60 @@
     }
   }
 }
+#article-new{
+  textarea{
+    resize: vertical;
+
+    &.description{
+      resize: none;
+      min-height: 80px;
+    }
+    &.body{
+      min-height: 200px;
+    }
+  }
+
+  textarea, input, [type="submit"] {
+    border-radius: 0px;
+  }
+}
+#preview{
+  overflow: hidden;
+  min-height: 320px;
+  background: #d7d7d7;
+
+  .title{
+    min-height: 20px;
+    text-align: center;
+  }
+  .description{
+    min-height: 120px;
+    text-align: center;
+  }
+
+  .preview-img{
+    margin: 0 auto 20px;
+  }
+}
+
+.preview-page{
+  .tech{
+    background: $white-dark;
+    color: $lookatthis-main;
+    text-align: right;
+    padding-right: 10px;
+  }
+}
+.article-full{
+
+  .title{
+    text-align: center;
+      span {
+        border-bottom: 2px solid $grey;
+        font-size: 1.5em;
+      }
+  }
+  .part1, .part2{
+
+  }
+}

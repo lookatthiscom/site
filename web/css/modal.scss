@@ -1,0 +1,33 @@
+@import "main";
+.arcticmodal-container{
+  .arcticmodal-container_i2{
+    .box-modal{
+      .login-place{
+        display: inline-block;
+        width: 49%;
+        border-right: 2px solid $grey;
+      }
+      .registration-place{
+        display: inline-block;
+        width: 49%;
+      }
+    }
+    #loginModal{
+      width: 800px;
+
+      #modal-login-form, #modal-registration-form{
+        .form-group{
+          font-size: 0.6em;
+
+          input{
+            //min-width: 200px;
+          }
+        }
+
+        #login-btn{
+          margin: auto;
+        }
+      }
+    }
+  }
+}

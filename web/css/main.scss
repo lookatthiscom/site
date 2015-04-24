@@ -1,6 +1,7 @@
 $lookatthis-main: #ffc511;
 $lookatthis-light: rgba(255, 197, 17, 0.45);
 $grey: #d5d5d5;
+$white-dark: #F4F4F4;
 $green-btn: #00d400;
 $green-light-btn: rgba(0, 212, 0, 0.45);
 $blue: #1bb4ff;
@@ -22,12 +23,41 @@ body{
   font-size: 1.5em;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+
+  input{border: none;}
+
+  .btn{border-radius: 0px;}
+
+  div.required label:after {
+    content: " *";
+    color: red;
+  }
+
+  .marker{background: #ffff00;}
+
+  .flag{
+    position: absolute;
+    width: 40px;
+    top: 2px;
+    right: 50px;
+    transition-duration: $fast;
+    transition-timing-function: ease;
+    -webkit-transition-duration: $fast;
+    -webkit-transition-timing-function: ease;
+    &:hover {
+      -webkit-transform: rotateX(20deg);
+      transform: rotateX(20deg);
+      box-shadow: 0px 5px 11px 1px $lookatthis-main;
+    }
+  }
 
   .left-panel{
     min-height: 150px;
     padding: 0px;
-    -webkit-perspective: 500px;
-    perspective: 500px;
+    -webkit-perspective: 500;
+    perspective: 500;
 
     .button-list{
       display: block;
@@ -37,6 +67,8 @@ body{
       font-size: 1.2em;
       transition-duration: $fast;
       transition-timing-function: ease;
+      -webkit-transition-duration: $fast;
+      -webkit-transition-timing-function: ease;
       font-weight: 700;
 
       &.write-article{
@@ -76,7 +108,7 @@ body{
       .icon{
         display: inline-block;
         height: 48px;
-        width: 50px;
+        width: 51px;
         background-image: url('/images/left-panel-icons.png');
         background-repeat: no-repeat;
 
@@ -104,6 +136,27 @@ body{
         position: relative;
         color: $grey-text;
       }
+
+      &.fixed-right-btn{
+        position: fixed;
+        width: 100%;
+
+        &.write-article{
+          top: -30px;
+        }
+        &.earn-money{
+          top: 20px;
+        }
+        &.buy-article{
+          top: 70px;
+        }
+        &.join{
+          top: 120px;
+        }
+      }
+    }
+    &.small{
+      max-width: 50px;
     }
   }
 
@@ -114,6 +167,71 @@ body{
 
   .center-panel{
     //border: 1px solid $grey;
+
+    &.big{
+      max-width: 91%;
+    }
   }
 
+  .small{
+    max-width: 50px;
+  }
+
+  .log-in{
+    display: block;
+    max-width: 200px;
+    margin: -7px auto;
+    visibility: hidden;
+  }
+  .footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background: $lookatthis-main;
+    height: 30px;
+    transition-duration: $fast;
+    transition-timing-function: ease;
+    -webkit-transition-duration: $fast;
+    -webkit-transition-timing-function: ease;
+    &.open{
+      height: 60px;
+      .log-in{visibility: visible;}
+    }
+
+    .row{
+      text-align: center;
+    }
+    .arrow-footer{
+      position: relative;
+      top: -12px;
+      cursor: pointer;
+      &:hover{
+        color: #ffffff;
+      }
+    }
+  }
+
+  .copy{
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.8em;
+  }
+
+  .arcticmodal-container_i2{
+    .box-modal{
+      &.custom-arctic {
+        font-family: 'Ubuntu';
+        font-size: 1.3em;
+        font-weight: 300;
+        border-radius: 0px;
+        background: $lookatthis-main;
+        color: #000000;
+        box-shadow: 0px 0px 3px 6px $lookatthis-light;
+      }
+      .box-modal_close{
+        color: #000000;
+      }
+    }
+  }
 }
