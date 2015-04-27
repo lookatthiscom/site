@@ -17,10 +17,19 @@ if(Yii::$app->user->isGuest):?>
     <footer class="footer open">
         <div class="container">
             <div class="row">
-                <div class="arrow-footer glyphicon open glyphicon-remove pull-right"></div>
-                <a href="<?=Url::to(['site/logout']);?>" data-method="post" class="btn btn-success log-in" type="button">
-                    <?= Yii::t('app','Log out');?>
-                </a>
+                <div class="col-sm-3">
+                    <img src="http://api.hostip.info/flag.php"  class="flag pull-left" data-toggle="tooltip" data-placement="top" title="<?=Yii::t('app','UKRAINE');?>">
+                    <span class="info">I am <?= Yii::$app->user->identity->username;?></span>
+                </div>
+                <div class="col-sm-6">
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="arrow-footer glyphicon open glyphicon-remove pull-right"></div>
+                    <a href="<?=Url::to(['site/logout']);?>" data-method="post" class="btn btn-success log-in pull-right" type="button">
+                        <?= Yii::t('app','Log out');?>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>

@@ -40,7 +40,6 @@ AppAsset::register($this);
                     </div>
                 <?php endif;?>
                 <?= widgets\RightPanelWidget::widget();?>
-                <img src="http://api.hostip.info/flag.php"  class="flag" data-toggle="tooltip" data-placement="bottom" title="<?=Yii::t('app','UKRAINE');?>">
             </div>
             <div class="row copy">&copy; Lookatthis <?= date('Y') ?></div>
         </div>

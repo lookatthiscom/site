@@ -25,7 +25,9 @@ use yii\helpers\Url;
             'value' => $article->part2
         ]) ?>
 
-        <?//= $form->field($model, 'photo[]')->fileInput(['multiple' => true]) ?>
+        <?= $form->field($model, 'photo1')->fileInput() ?>
+        <?= $form->field($model, 'photo2')->fileInput() ?>
+        <?= $form->field($model, 'photo3')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app','Create article'), ['class' => 'btn btn-success']) ?>

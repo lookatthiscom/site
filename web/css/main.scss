@@ -10,6 +10,7 @@ $buy: #ff744e;
 $buy-light: rgba(255, 116, 78, 0.46);
 $grey-text: #5A5A5A;
 $black-transparent: rgba(55, 55, 55, 0.51);
+$views: #6d9eff;
 
 $fast: 0.5s;
 $medium: 1.2s;
@@ -36,22 +37,6 @@ body{
   }
 
   .marker{background: #ffff00;}
-
-  .flag{
-    position: absolute;
-    width: 40px;
-    top: 2px;
-    right: 50px;
-    transition-duration: $fast;
-    transition-timing-function: ease;
-    -webkit-transition-duration: $fast;
-    -webkit-transition-timing-function: ease;
-    &:hover {
-      -webkit-transform: rotateX(20deg);
-      transform: rotateX(20deg);
-      box-shadow: 0px 5px 11px 1px $lookatthis-main;
-    }
-  }
 
   .left-panel{
     min-height: 150px;
@@ -158,6 +143,35 @@ body{
     &.small{
       max-width: 50px;
     }
+    .user-button{
+      display: block;
+      height: 50px;
+      line-height: 50px;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+
+      &.views{
+        border: 1px solid $views;
+      }
+      &.money{
+        border: 1px solid $lookatthis-main;
+      }
+
+      .icon{
+        display: inline-block;
+        height: 48px;
+        width: 51px;
+
+        &.views{
+          border: 1px solid $views;
+          background: $views;
+        }
+        &.money{
+          border: 1px solid $lookatthis-main;
+          background: $lookatthis-main;
+        }
+      }
+    }
   }
 
   .right-panel{
@@ -197,6 +211,15 @@ body{
     &.open{
       height: 60px;
       .log-in{visibility: visible;}
+
+      .flag{
+        display: block;
+        width: 40px;
+        right: 50px;
+      }
+      .info{
+        display: block;
+      }
     }
 
     .row{
@@ -209,6 +232,9 @@ body{
       &:hover{
         color: #ffffff;
       }
+    }
+    .flag, .info{
+      display: none;
     }
   }
 

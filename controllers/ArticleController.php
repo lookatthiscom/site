@@ -2,10 +2,10 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\models\Article;
 use app\models\ArticleForm;
 use app\models\ArticleShow;
-use Yii;
 use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -79,6 +79,7 @@ class ArticleController extends Controller
             $article->description = $modelForm->description;
             $article->part1 = $modelForm->part1;
             $article->part2 = $modelForm->part2;
+            $article->user_id = Yii::$app->user->id;
             $article->save();
             return $this->redirect(['article/show', 'public_title' => $article->public_title]);
 
@@ -111,14 +112,25 @@ class ArticleController extends Controller
         $modelForm = new ArticleForm();
         $article = new Article();
         $article = $article->findByPublicId($public_id);
+
         if($modelForm->load(Yii::$app->request->post()) && $modelForm->validate()){
             /*foreach( $modelForm->attributes as $key => $value){
                 $article->$key = $value;
             }*/
+            $article->photo1 = UploadedFile::getInstance($modelForm, 'photo1');
+            $article->photo2 = UploadedFile::getInstance($modelForm, 'photo2');
+            $article->photo3 = UploadedFile::getInstance($modelForm, 'photo3');
+
             $article->title = $modelForm->title;
             $article->description = $modelForm->description;
             $article->part1 = $modelForm->part1;
             $article->part2 = $modelForm->part2;
+            //var_dump($modelForm);
+            var_dump($_POST);
+            return;
+            $article->photo1->saveAs('uploads/' . $article->public_id . '/'. $article->photo1->baseName . '.' . $article->photo1->extension);
+            $article->photo2->saveAs('uploads/' . $article->public_id . '/'. $article->photo2->baseName . '.' . $article->photo2->extension);
+            $article->photo3->saveAs('uploads/' . $article->public_id . '/'. $article->photo3->baseName . '.' . $article->photo3->extension);
             $article->save();
             $response = [
                 'status' => 'ok',

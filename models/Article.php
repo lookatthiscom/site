@@ -49,6 +49,14 @@ class Article extends ActiveRecord
         return $this->hasMany(ArticleShow::className(), ['article_id' => 'id']);
     }
 
+    public function getPhotos(){
+        return $this->hasMany(ArticlePhoto::className(), ['article_id' => 'id']);
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['user_id' => 'id']);
+    }
+
     public function isNewObserver($user_location = null){
         if(is_null($user_location)){
             return false;
@@ -60,6 +68,7 @@ class Article extends ActiveRecord
             $articleShow->country = $user_location->country_name;
             $articleShow->ip_address = $user_location->ip;
             $articleShow->article_id = $this->id;
+            $articleShow->user_id = (\Yii::$app->user->isGuest)?null:\Yii::$app->user->id;
             $articleShow->save();
             $this->updateCounters(['total_show_count' => 1]);
         }

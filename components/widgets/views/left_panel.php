@@ -53,7 +53,21 @@ if(in_array(Yii::$app->controller->id, ['article']) && in_array(Yii::$app->contr
                     <?=\Yii::t('app','Write my article');?>
                 </div>
             </a>
-            Welcome, <?= Yii::$app->user->identity->username;?>
+            <div class="user-button views">
+                <div class="pull-left icon views"></div>
+                <div class="col-md-9 col-lg-9 title">
+                    <?=\Yii::t('app','Views');?>
+                </div>
+            </div>
+            <div class="user-button money">
+                <div class="pull-left icon money"></div>
+                <div class="col-md-9 col-lg-9 title">
+                    <?=\Yii::t('app','Money');?>
+                    <span class="pull-right">
+                        <?= Yii::$app->user->identity->money_real;?>
+                    </span>
+                </div>
+            </div>
         </div>
     <?php endif;?>
 <?php endif;?>

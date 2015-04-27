@@ -149,4 +149,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         }
         return false;
     }
+
+    public function getArticles(){
+        return $this->hasMany(Article::className(), ['id' => 'user_id']);
+    }
 }
